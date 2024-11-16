@@ -3,11 +3,11 @@ description: iOS implementation of the google_sign_in plugin.
 publish_to: none
 repository: https://github.com/flutter/packages/tree/main/packages/google_sign_in/google_sign_in_ios
 issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+google_sign_in%22
-version: 5.6.4
+version: 5.7.8
 
 environment:
-  sdk: ">=2.19.0 <4.0.0"
-  flutter: ">=3.7.0"
+  sdk: ^3.3.0
+  flutter: ">=3.19.0"
 
 flutter:
   plugin:
@@ -16,14 +16,17 @@ flutter:
       ios:
         dartPluginClass: GoogleSignInIOS
         pluginClass: FLTGoogleSignInPlugin
+        sharedDarwinSource: true
+      macos:
+        dartPluginClass: GoogleSignInIOS
+        pluginClass: FLTGoogleSignInPlugin
+        sharedDarwinSource: true
 
 dependencies:
   flutter:
     sdk: flutter
   google_sign_in_platform_interface:
     git: https://github.com/kumsumit/google_sign_in_platform_interface.git
-  pigeon: 
-    git: https://github.com/kumsumit/pigeon.git
 
 dev_dependencies:
   build_runner: ^2.4.6
@@ -31,7 +34,10 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  mockito: 5.4.1
+  mockito: ^5.4.4
+  pigeon: 
+    git: https://github.com/kumsumit/pigeon.git
+
 
 topics:
   - authentication
@@ -39,6 +45,8 @@ topics:
 
 # The example deliberately includes limited-use secrets.
 false_secrets:
-  - /example/ios/Runner/GoogleService-Info.plist
-  - /example/ios/RunnerTests/GoogleSignInTests.m
+  - /darwin/Tests/GoogleService-Info.plist
+  - /darwin/Tests/GoogleSignInTests.m
+  - /example/ios/Runner/Info.plist
   - /example/lib/main.dart
+  - /example/macos/Runner/Info.plist
